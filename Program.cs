@@ -17,6 +17,21 @@ namespace classes
 
             Console.WriteLine(account.GetAccountHistory());
 
+            var giftCard = new GiftCardAccount("gift card for Stormy", 100, 50);
+            giftCard.MakeWithdrawal(20, DateTime.Now, "get expensive condom");
+            giftCard.MakeWithdrawal(50, DateTime.Now, "Disorderly conduct fine");
+            giftCard.PerformMonthEndTransactions();
+            // can make additional deposits:
+            giftCard.MakeDeposit(27.50m, DateTime.Now, "payment for a quicky");
+            Console.WriteLine(giftCard.GetAccountHistory());
+
+            var savings = new InterestEarningAccount("savings account", 10000);
+            savings.MakeDeposit(750, DateTime.Now, "save some money");
+            savings.MakeDeposit(1250, DateTime.Now, "Add more savings");
+            savings.MakeWithdrawal(250, DateTime.Now, "ooopsies");
+            savings.PerformMonthEndTransactions();
+            Console.WriteLine(savings.GetAccountHistory());
+
             /*
             try
             {
