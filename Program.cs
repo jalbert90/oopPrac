@@ -15,6 +15,8 @@ namespace classes
             account.MakeDeposit(100, DateTime.Now, "Refund from Stormy Daniels");
             Console.WriteLine(account.Balance);
 
+            Console.WriteLine(account.GetAccountHistory());
+
             /*
             try
             {
