@@ -22,13 +22,19 @@ namespace classes
             }
         }
 
-        public BankAccount(string name, decimal initialBalance)
+        private readonly decimal minimumBalance;
+
+        public BankAccount(string name, decimal initialBalance) : this(name, initialBalance, 0) { }
+
+        public BankAccount(string name, decimal initialBalance, decimal minimumBalance)
         {        
             this.Number = accountNumberSeed.ToString();
             accountNumberSeed++;
 
             this.Owner = name;
-            MakeDeposit(initialBalance, DateTime.Now, "Initial balance");
+            this.minimumBalance = minimumBalance;
+            if (initialBalance > 0)
+                MakeDeposit(initialBalance, DateTime.Now, "Initial balance");
         }
 
         private List<Transaction> allTransactions = new List<Transaction>();
@@ -49,7 +55,7 @@ namespace classes
             {
                 throw new ArgumentOutOfRangeException(nameof(amount), "Amount of withdrawal must be positive");
             }
-            if (Balance - amount < 0)
+            if (Balance - amount < minimumBalance)
             {
                 throw new InvalidOperationException("Not sufficient funds for this withdrawal");
             }
