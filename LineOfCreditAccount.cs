@@ -17,5 +17,10 @@ namespace classes
                 MakeWithdrawal(interest, DateTime.Now, "Charge montly interest");
             }
         }
+
+        protected override Transaction? CheckWithdrawalLimit(bool isOverDrawn) =>
+            isOverDrawn
+            ? new Transaction(-20, DateTime.Now, "Apply overdraft fee")
+            : default;
     }
 }
