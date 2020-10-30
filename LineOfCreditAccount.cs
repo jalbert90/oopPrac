@@ -18,8 +18,8 @@ namespace classes
             }
         }
 
-        protected override Transaction? CheckWithdrawalLimit(bool isOverDrawn) =>
-            isOverDrawn
+        protected override Transaction? CheckWithdrawalLimit(bool isOverdrawn) =>
+            isOverdrawn
             ? new Transaction(-20, DateTime.Now, "Apply overdraft fee")
             : default;
     }
